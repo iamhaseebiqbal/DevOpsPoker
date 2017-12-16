@@ -99,10 +99,13 @@ class PokerPlayerAPI(Resource):
 
         if round == 0:
             print("We are in the round", round)
+            return bidToReturn
         elif round == 3:
             print("We are in the round", round)
+            return bidToReturn
         elif round == 4:
             print("We are in the round", round)
+            return bidToReturn
         elif round == 5:
             print("We are in the round", round)
             cards = data['hand'] + data['board']
