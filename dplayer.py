@@ -35,21 +35,19 @@ class PokerPlayerAPI(Resource):
     def __check_suits(self, card):
         print(card)
         if card[1] == 'd':
-            print('i am in the d')
             self.diamonds = self.diamonds + 1
         elif card[1] == 's':
-            print('i am in the s')
             self.spades = self.spades + 1
         elif card[1] == 'h':
-            print('i am in the h')
             self.hearts = self.hearts + 1
         elif card[1] == 'c':
-            print('i am in the c')
             self.clubs = self.clubs + 1
-        print('diamonds', self.diamonds)
-        print('s', self.spades)
-        print('h', self.hearts)
-        print('c', self.clubs)
+
+    def __bet_double(self, min_bid, max_bid):
+        if 2*min_bid < max_bid :
+            return 2*min_bid
+        else
+            return max_bid
 
     ## return bid to caller
     #
@@ -110,6 +108,10 @@ class PokerPlayerAPI(Resource):
             # if we have 5 suits (flush)
             for card in data['hand']:
                 self.__check_suits(card)
+            for card in data['board']:
+                self.__check_suits(card)
+            if self.diamonds == 5 or self.spades == 5 or self.hearts == 5 or self.clubs == 5:
+                bidToReturn = self.__bet_double(data['min_bid'], data['max_bid'])
         return bidToReturn
 
     # dispatch incoming get commands
