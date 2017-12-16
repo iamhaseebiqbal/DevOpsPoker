@@ -128,10 +128,6 @@ class PokerPlayerAPI(Resource):
             return bidToReturn
         elif round == 3:
             print("We are in the round", round)
-            pair = self.__check_pair(data['hand'], data['board'])
-            print('pair', pair),
-            if pair == 1:
-                bidToReturn = self.__bet_double(data['min_bid'], data['max_bid'])
             return bidToReturn
         elif round == 4:
             print("We are in the round", round)
