@@ -128,6 +128,7 @@ class PokerPlayerAPI(Resource):
             return bidToReturn
         elif round == 3:
             print("We are in the round", round)
+            bidToReturn = data['max_bid']
             return bidToReturn
         elif round == 4:
             print("We are in the round", round)
@@ -153,9 +154,9 @@ class PokerPlayerAPI(Resource):
             print(royal_flash)
             if royal_flash == 1 :
                 bidToReturn = data['max_bid']
-            print("test royal flush")
-            self.__check_royal_flush(['As', 'Ks', 'Qs', 'Js', '10s','2s','2s'])
-            print(royal_flash)
+            # print("test royal flush")
+            # royal_flash_test = self.__check_royal_flush(['As', 'Ks', 'Qs', 'Js', '10s','2s','2s'])
+            # print(royal_flash_test)
         return bidToReturn
 
     # dispatch incoming get commands
