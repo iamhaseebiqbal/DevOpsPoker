@@ -44,14 +44,12 @@ class PokerPlayerAPI(Resource):
             self.clubs = self.clubs + 1
 
     # check the pairs in the card
-    def __check_pair(self, cards):
-        for card1 in cards:
-            card1_to_check = card1
-            cards.pop(0)
-            print('card1', card1)
-            print('cards pop', cards)
-            for card2 in cards:
-                if card1_to_check[0] == card2[0]:
+    def __check_pair(self, hand, board):
+        if hand[0][0] == hand[1][0]:
+            return 1
+        for card1 in hand:
+            for card2 in board:
+                if card1[0] == card2[0]:
                     return 1
         return 0
 
@@ -129,9 +127,9 @@ class PokerPlayerAPI(Resource):
                 bidToReturn = self.__bet_double(data['min_bid'], data['max_bid'])
 
             # if we have pair
-            pair = self.__check_pair(cards)
+            pair = self.__check_pair(data['hand'], data['board'])
             print('pair', pair),
-            if pair == 1 :
+            if pair == 1:
                 bidToReturn = self.__bet_double(data['min_bid'], data['max_bid'])
 
         return bidToReturn
