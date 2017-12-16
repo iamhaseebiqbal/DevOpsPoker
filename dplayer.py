@@ -67,10 +67,23 @@ class PokerPlayerAPI(Resource):
     #         bid  : a number between 0 and max_bid
     def __get_bid(self, data):
         print('hand',data['hand'])
-        print('hand first card rank', data['hand'][0][0])
-        print('hand first card suits', data['hand'][0][1])
-        print('size of hand',len(data['hand']))
-        return 0
+        # print('hand first card rank', data['hand'][0][0])
+        # print('hand first card suits', data['hand'][0][1])
+        print('size of board', len(data['board']))
+
+        round = len(data['board']
+        bidToReturn = data['min_bid']
+
+        if round == 0:
+            print("We are in the round", round)
+        if round == 1:
+            print("We are in the round", round)
+        if round == 2:
+            print("We are in the round", round)
+        if round == 3:
+            print("We are in the round", round)
+
+        return bidToReturn
 
     # dispatch incoming get commands
     def get(self, command_id):
