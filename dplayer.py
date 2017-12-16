@@ -90,12 +90,16 @@ class PokerPlayerAPI(Resource):
             for card in data['hand']:
                 print(card)
                 if card[1] == 'd':
+                    print('i am in the d')
                     diamonds=+1;
                 elif card[1] == 's':
+                    print('i am in the s')
                     spades=+1;
                 elif card[1] == 'h':
+                    print('i am in the h')
                     hearts = +1;
                 elif card[1] == 'c':
+                    print('i am in the c')
                     clubs = +1;
 
             print('diamonds',diamonds)
