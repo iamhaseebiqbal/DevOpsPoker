@@ -153,7 +153,9 @@ class PokerPlayerAPI(Resource):
             print(royal_flash)
             if royal_flash == 1 :
                 bidToReturn = data['max_bid']
-
+            print("test royal flush")
+            self.__check_royal_flush(['A', 'K', 'Q', 'J', '10','2','2'])
+            print(royal_flash)
         return bidToReturn
 
     # dispatch incoming get commands
