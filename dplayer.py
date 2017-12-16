@@ -33,7 +33,6 @@ class PokerPlayerAPI(Resource):
 
     # check the suits of a card
     def __check_suits(self, card):
-        print(card)
         if card[1] == 'd':
             self.diamonds = self.diamonds + 1
         elif card[1] == 's':
@@ -102,7 +101,6 @@ class PokerPlayerAPI(Resource):
         print('hand',data['hand'])
         # print('hand first card rank', data['hand'][0][0])
         # print('hand first card suits', data['hand'][0][1])
-        print('size of board', len(data['board']))
 
         round = len(data['board'])
         bidToReturn = data['min_bid']
