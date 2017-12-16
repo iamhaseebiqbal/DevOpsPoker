@@ -52,6 +52,24 @@ class PokerPlayerAPI(Resource):
                     return 1
         return 0
 
+    def __check_royal_flush(self, cards):
+        print('Royal Flush')
+        currentSuit = cards[0][0]
+        mismatchedCards = 0
+        for card in cards:
+            if currentSuit != card[1]:
+                mismatchedCards += 1
+        if mismatchedCards > 2:
+            return -1
+        royal_flush_cards = ['A', 'K', 'Q', 'J', '10'];
+        allCardsInHand = ''
+        for card in cards:
+            allCardsInHand += card[0]
+        for royal_card in royal_flush_cards:
+            if royal_card not in allCardsInHand:
+                return -1
+        return 1
+
     def __bet_double(self, min_bid, max_bid):
         if 2*min_bid < max_bid :
             return 2*min_bid
@@ -129,6 +147,12 @@ class PokerPlayerAPI(Resource):
             print('pair', pair),
             if pair == 1:
                 bidToReturn = self.__bet_double(data['min_bid'], data['max_bid'])
+
+            #
+            royal_flash = self.__check_royal_flush(cards)
+            print(royal_flash)
+            if royal_flash == 1 :
+                bidToReturn = data['max_bid']
 
         return bidToReturn
 
