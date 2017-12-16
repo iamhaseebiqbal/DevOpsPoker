@@ -43,6 +43,18 @@ class PokerPlayerAPI(Resource):
         elif card[1] == 'c':
             self.clubs = self.clubs + 1
 
+    # check the pairs in the card
+    def __check_pair(self, cards):
+        for card1 in cards:
+            card1_to_check = card1
+            cards.pop(0)
+            print('card1', card1)
+            print('cards pop', cards)
+            for card2 in cards:
+                if card1_to_check[0] == card2[0]:
+                    return 1
+        return 0
+
     def __bet_double(self, min_bid, max_bid):
         if 2*min_bid < max_bid :
             return 2*min_bid
@@ -116,7 +128,11 @@ class PokerPlayerAPI(Resource):
             if self.diamonds == 5 or self.spades == 5 or self.hearts == 5 or self.clubs == 5:
                 bidToReturn = self.__bet_double(data['min_bid'], data['max_bid'])
 
-            # if we have full house
+            # if we have pair
+            pair = self.__check_pair(cards)
+            print('pair', pair),
+            if pair == 1 :
+                bidToReturn = self.__bet_double(data['min_bid'], data['max_bid'])
 
         return bidToReturn
 
