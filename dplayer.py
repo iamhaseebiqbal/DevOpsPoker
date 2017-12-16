@@ -46,7 +46,7 @@ class PokerPlayerAPI(Resource):
     def __bet_double(self, min_bid, max_bid):
         if 2*min_bid < max_bid :
             return 2*min_bid
-        else
+        else :
             return max_bid
 
     ## return bid to caller
@@ -105,13 +105,16 @@ class PokerPlayerAPI(Resource):
             print("We are in the round", round)
         elif round == 5:
             print("We are in the round", round)
+            cards = data['hand'] + data['board']
+            print('cards :',cards)
             # if we have 5 suits (flush)
-            for card in data['hand']:
-                self.__check_suits(card)
-            for card in data['board']:
+            for card in cards:
                 self.__check_suits(card)
             if self.diamonds == 5 or self.spades == 5 or self.hearts == 5 or self.clubs == 5:
                 bidToReturn = self.__bet_double(data['min_bid'], data['max_bid'])
+
+            # if we have full house
+
         return bidToReturn
 
     # dispatch incoming get commands
