@@ -71,17 +71,38 @@ class PokerPlayerAPI(Resource):
         # print('hand first card suits', data['hand'][0][1])
         print('size of board', len(data['board']))
 
-        round = len(data['board']
+        round = len(data['board'])
         bidToReturn = data['min_bid']
 
         if round == 0:
             print("We are in the round", round)
-        if round == 1:
+        elif round == 3:
             print("We are in the round", round)
-        if round == 2:
+        elif round == 4:
             print("We are in the round", round)
-        if round == 3:
+        elif round == 5:
             print("We are in the round", round)
+            # if we have 5 suits (flush)
+            diamonds = 0
+            spades = 0
+            hearts = 0
+            clubs = 0
+            for card in data['hand']:
+                print(card)
+                if card[1] == 'd':
+                    diamonds=+1;
+                elif card[1] == 's':
+                    spades=+1;
+                elif card[1] == 'h':
+                    hearts = +1;
+                elif card[1] == 'c':
+                    clubs = +1;
+
+            print('diamonds',diamonds)
+            print('s',spades)
+            print('h',hearts)
+            print('c',clubs)
+
 
         return bidToReturn
 
