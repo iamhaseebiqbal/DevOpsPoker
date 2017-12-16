@@ -26,6 +26,31 @@ api = Api(app)
 # Web API to be called from the poker manager
 class PokerPlayerAPI(Resource):
 
+    diamonds = 0
+    spades = 0
+    hearts = 0
+    clubs = 0
+
+    # check the suits of a card
+    def __check_suits(self, card):
+        print(card)
+        if card[1] == 'd':
+            print('i am in the d')
+            self.diamonds = self.diamonds + 1
+        elif card[1] == 's':
+            print('i am in the s')
+            self.spades = self.spades + 1
+        elif card[1] == 'h':
+            print('i am in the h')
+            self.hearts = self.hearts + 1
+        elif card[1] == 'c':
+            print('i am in the c')
+            self.clubs = self.clubs + 1
+        print('diamonds', self.diamonds)
+        print('s', self.spades)
+        print('h', self.hearts)
+        print('c', self.clubs)
+
     ## return bid to caller
     #
     #  Depending on the cards passed to this function in the data parameter,
@@ -83,28 +108,8 @@ class PokerPlayerAPI(Resource):
         elif round == 5:
             print("We are in the round", round)
             # if we have 5 suits (flush)
-            diamonds = 0
-            spades = 0
-            hearts = 0
-            clubs = 0
             for card in data['hand']:
-                print(card)
-                if card[1] == 'd':
-                    print('i am in the d')
-                    diamonds= diamonds + 1
-                elif card[1] == 's':
-                    print('i am in the s')
-                    spades= spades + 1
-                elif card[1] == 'h':
-                    print('i am in the h')
-                    hearts = hearts + 1
-                elif card[1] == 'c':
-                    print('i am in the c')
-                    clubs = clubs + 1
-            print('diamonds',diamonds)
-            print('s',spades)
-            print('h',hearts)
-            print('c',clubs)
+                self.__check_suits(card)
         return bidToReturn
 
     # dispatch incoming get commands
